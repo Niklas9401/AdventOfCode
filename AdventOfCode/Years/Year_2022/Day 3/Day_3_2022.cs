@@ -38,7 +38,7 @@ namespace AdventOfCode.Years
                 }
             }
 
-            Console.WriteLine(TotalPriority.ToString());
+            Console.WriteLine($"Priority score of all misplaced items (in both compartments): {TotalPriority}");
 
             // ------------ TWO ----------------
 
@@ -56,7 +56,7 @@ namespace AdventOfCode.Years
                 }
             }
 
-            Console.WriteLine(TotalPriority.ToString());
+            Console.WriteLine($"Priority score of all misplaced common items (in both compartments, for every 3 elves): {TotalPriority}");
 
 
         }

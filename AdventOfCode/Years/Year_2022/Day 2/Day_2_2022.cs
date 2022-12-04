@@ -39,7 +39,7 @@ namespace AdventOfCode.Years
                 Score += Myself;
             }
 
-            Console.WriteLine(Score);
+            Console.WriteLine($"Rock-Paper-Scissor score, if X,Y,Z stands for Rock,Paper and Scissors: {Score}");
 
             // ---- TWO
 
@@ -68,7 +68,7 @@ namespace AdventOfCode.Years
                 Score += Myself;
             }
 
-            Console.WriteLine(Score);
+            Console.WriteLine($"Rock-Paper-Scissor score, if X,Y,Z stands for Lose,Draw and Win: {Score}");
         }
     }
 }
