@@ -1,11 +1,11 @@
-﻿
-
-
-<h1> 🎄<a href="https://adventofcode.com/" alt="Offical Advent of Code Website">Advent of Code</a>🎄</h1>
-
+﻿<center>
 <p align="center">
+
+<h1 align="center"> 🎄<a href="https://adventofcode.com/" alt="Offical Advent of Code Website">Advent of Code</a>🎄</h1>
+
+
 <img src="https://bestanimations.com/media/christmas-tree/579868171pixel-christmas-tree-bows-blinking-lights-animation.gif">
-</p>
+
 
 
 
@@ -22,3 +22,5 @@
 | **Total stars earned:**     | 11/400 🔆|
 
 
+</p>
+</center>
