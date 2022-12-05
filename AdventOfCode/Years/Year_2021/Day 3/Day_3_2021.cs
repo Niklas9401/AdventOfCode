@@ -19,30 +19,36 @@ namespace AdventOfCode.Years
         public Day_3_2021()
         {
             string[] Lines = File.ReadAllLines(INPUT_PATH);
-            int[] usages = new int[5];
+     
+            int[] usages = new int[12];
 
             foreach (string Line in Lines)
             {
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < usages.Length; i++)
                 {
-                    if (Line[i] == '1')
+                    if (Line[i].Equals('1'))
+                    {
                         usages[i] += 1;
+                    }
+                    else
+                    {
+                        usages[i] -= 1;
+                    }
                 }
             }
-            string result = string.Empty;
-            for (int i = 0; i < 5; i++)
+            string gamma = string.Empty;
+            string epsilon = string.Empty;
+            for (int i = 0; i < usages.Length; i++)
             {
-                    result += Convert.ToInt32(usages[i] >= Lines.Length/2);
+                    gamma += Convert.ToInt32(usages[i] >= 0);
+                    epsilon += Convert.ToInt32(usages[i] < 0);
             }
-            
-            BitArray gammaRate = new BitArray(result.Select(c => c == '1').ToArray());
-            BitArray epsilonRate = new BitArray(result.Select(c => c == '0').ToArray());
-            int[] resultEpsilon = new int[1];
-            int[] resultGamma = new int[1];
-            gammaRate.CopyTo(resultGamma, 0);
-            epsilonRate.CopyTo(resultEpsilon, 0);
-            Console.WriteLine($"The gammarate is: {resultGamma[0]} The epsilonrate is: {resultEpsilon[0]}\n");
-            Console.WriteLine($"Power consumption: {resultGamma[0] * resultEpsilon[0]}");
+
+            int resultGamma = Convert.ToInt32(gamma, 2);
+            int resultEpsilon = Convert.ToInt32(epsilon, 2);
+
+            Console.WriteLine($"The gammarate is: {resultGamma} The epsilonrate is: {resultEpsilon}\n");
+            Console.WriteLine($"Power consumption: {resultGamma * resultEpsilon}");
         }
     }
 }
