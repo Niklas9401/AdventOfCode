@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Years\Year_2015\Day 1\" />
     <Folder Include="Years\Year_2015\Day 2\" />
     <Folder Include="Years\Year_2015\Day 3\" />
     <Folder Include="Years\Year_2015\Day 4\" />
