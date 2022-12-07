@@ -39,4 +39,7 @@ Day_5_2022 d522 = new Day_5_2022();
 Console.WriteLine("\n........................ DAY 6 of 2022 ........................\n");
 Day_6_2022 d622 = new Day_6_2022();
 
+Console.WriteLine("\n........................ DAY 7 of 2022 ........................\n");
+Day_7_2022 d722 = new Day_7_2022();
+
 Console.ReadKey();
