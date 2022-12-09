@@ -12,7 +12,7 @@ namespace AdventOfCode.Years
         public string INPUT_PATH =
             System.IO.Directory.GetParent(Environment.CurrentDirectory)
             .Parent?.Parent?.FullName +
-            "/Years/Year_2022/Day 8/test.txt";
+            "/Years/Year_2022/Day 8/Input.txt";
 
         public Day_8_2022()
         {
@@ -45,9 +45,6 @@ namespace AdventOfCode.Years
                         int LeftTree = matrix[i, j - 1];
                         int RightTree = matrix[i, j + 1];
 
-
-                        //if (isEdge && (TopTree < TreeSize || BottomTree < TreeSize || LeftTree < TreeSize || RightTree < TreeSize))
-                        //    VisibleTree++;
                         if (IsTreeTallestInColumn(i, j, matrix, TreeSize) || IsTreeTallestInRow(i, j, matrix, TreeSize))
                         {
                             VisibleTree++;
@@ -60,13 +57,14 @@ namespace AdventOfCode.Years
             }
             int OffsetTrees = 2 * Lines.Length + 2 * (Lines.Length - 2);
             VisibleTree += OffsetTrees;
-            Console.WriteLine(VisibleTree);
-
+            Console.WriteLine($"There are {VisibleTree} trees visible from outside the grid");
+            List<int> ScenicScores = new();
             foreach ((int, int) i in possibleSpots)
             {
-                CalculateScenicScore(i.Item1, i.Item2, matrix);
+                ScenicScores.Add(CalculateScenicScore(i.Item1, i.Item2, matrix));
             }
 
+            Console.WriteLine($"Best Scenic score is: {ScenicScores.Max()}");
         }
 
         public bool IsTreeAtEdge(int i, int j, string[] matrix)
@@ -90,74 +88,60 @@ namespace AdventOfCode.Years
 
         public int CalculateScenicScore(int row, int column, int[,] matrix)
         {
-            int ViewDistanceTop = row == 0 ? 0 : 1;
-            int ViewDistanceBottom = row == matrix.Length - 1 ? 0 : 1;
-            int ViewDistanceLeft = column == 0 ? 0 : 1;
-            int ViewDistanceRight = column == matrix.Length - 1 ? 0 : 1;
+            int ViewDistanceTop = 0;
+            int ViewDistanceBottom = 0;
+            int ViewDistanceLeft = 0;
+            int ViewDistanceRight = 0;
+
+            int TreeSize = matrix[row, column];
 
             //ViewDistance Top
-            if (ViewDistanceTop != 0)
+            if (row >= 1)
                 for (int i = row - 1; i >= 0; i--)
-                {
-                    int TreeSize = matrix[i, column];
                     if (matrix[i, column] >= TreeSize)
                     {
                         ViewDistanceTop++;
                         break;
                     }
-                    ViewDistanceTop++;
-
-                }
+                    else
+                        ViewDistanceTop++;
+            
 
             //ViewDistance Bottom
-            if (ViewDistanceBottom != 0)
-                for (int i = row + 1; i < matrix[i, column]; i++)
-                {
-                    int TreeSize = matrix[i, column];
+            if (row != matrix.Length - 1)
+                for (int i = row + 1; i < matrix.GetLength(1); i++)
                     if (matrix[i, column] >= TreeSize)
                     {
                         ViewDistanceBottom++;
                         break;
                     }
-                    ViewDistanceBottom++;
-                }
+                    else
+                        ViewDistanceBottom++;
+
 
             //ViewDistance Left
-            if (ViewDistanceLeft != 0)
+            if (column >= 1)
                 for (int i = column - 1; i >= 0; i--)
-                {
-                    int TreeSize = matrix[i, column];
                     if (matrix[row, i] >= TreeSize)
                     {
                         ViewDistanceLeft++;
                         break;
                     }
-                    ViewDistanceLeft++;
-
-                }
+                    else
+                        ViewDistanceLeft++;
 
             //ViewDistance Right
-            if (ViewDistanceRight != 0)
-                for (int i = column + 1; i < matrix[row, i]; i++)
-                {
-                    int TreeSize = matrix[i, column];
+            if (column != matrix.Length - 1)
+                for (int i = column + 1; i < matrix.GetLength(1); i++)
                     if (matrix[row, i] >= TreeSize)
                     {
                         ViewDistanceRight++;
                         break;
                     }
-                    ViewDistanceRight++;
+                    else
+                        ViewDistanceRight++;
 
-                }
-
-            if (ViewDistanceTop != 0)
-            {
-                Console.WriteLine("t");
-
-            }
-            return 0;
+            return ViewDistanceBottom*ViewDistanceTop*ViewDistanceLeft*ViewDistanceRight;
         }
-
-
     }
 }

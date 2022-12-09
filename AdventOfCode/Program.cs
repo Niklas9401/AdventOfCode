@@ -45,6 +45,5 @@ Day_7_2022 d722 = new Day_7_2022();
 Console.WriteLine("\n........................ DAY 8 of 2022 ........................\n");
 Day_8_2022 d822 = new Day_8_2022();
 
-Console.WriteLine("Test");
 
 Console.ReadKey();
